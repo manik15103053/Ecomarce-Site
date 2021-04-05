@@ -1,0 +1,33 @@
+
+/* product item css*/
+
+
+/*End product item css/
+
+/*Override css's*/
+
+
+
+
+.bg-light{
+    background-color: #0D6EFD!important;
+}
+
+
+
+
+.margin-top{
+
+    margin-top: 20px;
+}
+.feature-image{
+ 
+    max-height: 200px;
+
+}
+.footer-buttom{
+
+    padding: 25px;
+    margin-top: 20px;
+    background: #0D6EFD;
+}
