@@ -177,6 +177,10 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
+        //Intervention\Image\ImageServiceProvider::class,
+
+
+
 
 
     ],
@@ -232,7 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
-
+        //'Image' => Intervention\Image\Facades\Image::class,
 
 
     ],

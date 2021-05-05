@@ -5,41 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\District;
 use App\Models\Division;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use App\Notifications\VerifyRegistration;
 
-class RegistrationController extends Controller
+class UserController extends Controller
 {
-    public function registrationCreate(){
+    public function userDashboard(){
 
+        $user = Auth::user();
+        //dd($user->all());
+
+        return view('frontend.user.dashboard',compact('user'));
+    }
+
+    public function userProfile(){
+
+        $user = Auth::user();
         $division = Division::orderBy('priority','asc')->get();
         $district = District::orderBy('name','asc')->get();
-        return view('frontend.registration.create',compact('division','district'));
-    }
-    public function registrationStore(Request $request){
+        return view('frontend.user.profile',compact('user','division','district'));
 
-        //dd($request->all());
+    }
+    public function userUpdate(Request $request){
+        $user = Auth::user();
 
         $this->validate($request,[
 
             'first_name'   =>  'required',
             'last_name'   =>  'required',
-            'username'   =>  'required|unique:users|min:5',
-            'email'   =>  'required|email|unique:users',
-            'phone'   =>  'required|unique:users|min:11',
+            'username'   =>  'required|max:100|unique:users,username,'.$user->id,
+            'email'   =>  'required|email|unique:users,email,'.$user->id,
+            'phone'   =>  'required|max:11|unique:users,phone,'.$user->id,
             'division_id'   =>  'required',
             'district_id'   =>  'required',
             'street_address'   =>  'required',
-            'password'   =>  'required',
             'image'   =>  'nullable'
 
             
         ]);
-
-        $user =  new User();
+      
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->username = $request->username;
@@ -48,9 +53,9 @@ class RegistrationController extends Controller
         $user->division_id = $request->division_id;
         $user->district_id = $request->district_id;
         $user->street_address = $request->street_address;
-        $user->password = bcrypt($request->password);
-        $user->remember_token = Str::random(50);
-        $user->status = 0;
+        $user->shipping_address = $request->shipping_address;
+       
+        
 
         if($request->hasFile('image')){
 
@@ -63,35 +68,8 @@ class RegistrationController extends Controller
         ///Notification
 
         $user->save();
-        return redirect()->back()->with('msg','Registration Has Successfully');
+        return redirect()->back()->with('msg','User Updated Has Successfully');
         
-        
+
     }
-
-    ///Login Process
-    public function loginCreate(){
-
-        return view('frontend.registration.login');
-    }
-
-    public function login(Request $request){
-
-        $login = $request->only('email', 'password');
-
-        if (Auth::attempt($login)) {
-            // Authentication passed...
-            return redirect(route('home'));
-    }else{
-
-        return redirect()->back()->with('msg','Your Cretential is Invalied');
-    }
-}
-
-/////Logout Process
-
-public function logout(){
-
-    Auth::logout();
-    return redirect(route('home'));
-}
 }

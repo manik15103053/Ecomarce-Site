@@ -5,9 +5,11 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
@@ -31,9 +33,22 @@ Route::get('/search/product',[PageController::class,'search'])->name('product.se
 ///Catagory Route
 Route::get('/category/show/{id}',[PageController::class,'categoryshow'])->name('category.show');
 ///Route User Registration///
+///
 
 Route::get('/user/registration',[RegistrationController::class,'registrationCreate'])->name('registration.create');
 Route::post('/user/store',[RegistrationController::class,'registrationStore'])->name('registration.store');
+Route::get('/token/{token}',[NotificationController::class,'notify'])->name('user.verification');
+//User Profiles///
+Route::get('/user/dashboard',[UserController::class,'userDashboard'])->name('user.dashboard');
+Route::get('/user/profile',[UserController::class,'userProfile'])->name('user.profile');
+Route::post('/user/update/profile',[UserController::class,'userUpdate'])->name('user.update');
+///Login Route////
+Route::get('/login/process',[RegistrationController::class,'loginCreate'])->name('user.login');
+Route::post('/login',[RegistrationController::class,'login'])->name('login');
+Route::get('/logout',[RegistrationController::class,'logout'])->name('logout');
+
+
+
 
 
 Route::group(['prefix' => 'admin'],function(){

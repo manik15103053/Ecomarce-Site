@@ -1,4 +1,13 @@
 
+html{
+
+    height: 125%;
+}
+body{
+
+    position: relative;
+    min-height: 125%;
+}
 /* product item css*/
 
 
@@ -13,7 +22,9 @@
     background-color: #0D6EFD!important;
 }
 
-
+.pointer{
+    cursor: pointer;
+}
 
 
 .margin-top{
@@ -25,9 +36,12 @@
     max-height: 200px;
 
 }
-.footer-buttom{
-
+.footer-buttom {
     padding: 25px;
     margin-top: 20px;
     background: #0D6EFD;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }

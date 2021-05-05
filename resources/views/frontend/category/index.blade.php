@@ -33,7 +33,7 @@
         
                   @if ( $i > 0 ) 
                  
-                  <img height="200" class="card-img-top feature-image" src="{{asset('images/product/'.$image->image)}}" alt="{{$image->title}}">
+                  <img width="200" class="card-img-top feature-image" src="{{asset('images/product/'.$image->image)}}" alt="{{$image->title}}">
                   @endif
                   @php $i--; @endphp
                   @endforeach

@@ -23,7 +23,7 @@
             </div>
         @endif
         <h4 class="card-title">User Registration</h4>
-        <form method="POST" action="{{route('registration.store')}}"style="width:70%;">
+        <form method="POST" action="{{route('registration.store')}}"enctype="multipart/form-data"style="width:70%;">
           @csrf
           <div class="form-group">
             <label for="first_name">First Name</label>
@@ -72,6 +72,10 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input required type="password" name="password"class="form-control" id="password"placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="image">Feeture Image</label>
+            <input  type="file" name="image"class="form-control" id="image"placeholder="">
           </div>
       
          

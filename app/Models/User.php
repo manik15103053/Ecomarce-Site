@@ -17,9 +17,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'username',
         'email',
+        'phone',
+        'division_id',
+        'district_id',
+        'street_address',
         'password',
+        'remember_token',
+        
     ];
 
     /**
@@ -40,4 +48,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function divisions(){
+        return $this->belongsTo(Division::class);
+    }
+    public function districts(){
+        return $this->belongsTo(District::class);
+    }
 }

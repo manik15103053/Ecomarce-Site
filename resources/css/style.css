@@ -1,4 +1,12 @@
+
+
 .margin-top{
 
     margin-top: 20px;
+}
+.footer-buttom{
+    position:absolute;
+    right:0;
+    left:0;
+    bottom:0
 }

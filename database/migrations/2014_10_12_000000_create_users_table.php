@@ -25,10 +25,11 @@ class CreateUsersTable extends Migration
             $table->string('street_address');
             $table->unsignedInteger('division_id')->comment('Division Table ID');
             $table->unsignedInteger('district_id')->comment('District Table ID');
-            $table->unsignedTinyInteger('status')->comment('0=Inactive|1=Active|2=Ban');
+            $table->string('status')->default(0);
             $table->string('ip_address')->nullable();
             $table->string('avatar')->nullable();
             $table->text('shipping_address')->nullable();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

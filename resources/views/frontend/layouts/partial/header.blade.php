@@ -26,11 +26,32 @@
         
       </ul>
       <u class="navbar-nav ml-auto ">
+        @guest
         <li >
-          <a class="nav-link"href="">Login</a>
+    
+         <a class="nav-link"href="{{route('user.login')}}">Login</a>
         </li>
         <li >
+     
           <a class="nav-link"href="{{route('registration.create')}}">Registration</a>
+          
+        </li>
+        @else
+        <li >
+     
+          <a class="nav-link"href="{{route('user.dashboard')}}">Dashboard</a>
+          
+        </li>
+         @endguest 
+      
+        
+        <li >
+          @if (auth()->user())
+
+          <a class="nav-link"href="{{route('logout')}}">Logout</a>
+          @endif
+          
+          
         </li>
       </u>
       
