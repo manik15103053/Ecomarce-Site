@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <div class="container margin-top">
   <div class="row">
     <div class="col-md-4">
@@ -12,6 +13,18 @@
     
 
         <div class="widget">
+        @if ($errors->any())
+               
+          @foreach ($errors->all() as $error)
+              <p class="btn btn-danger">{{ $error }}</p>
+          @endforeach
+    
+          @endif
+          @if(Session::has('msg'))
+          <div class="alert alert-primary">
+              {{ Session::get('msg') }}
+          </div>
+        @endif
 
             <h3>Featured Products</h3>
             <div class="row">
@@ -33,6 +46,7 @@
                   @php $i--; @endphp
                   @endforeach
                   <div class="card-body">
+                  
                     <h5 class="card-title">
                       <a href="{{route('product.show',$product->slug)}}">
                         {{$product->title}}
@@ -40,7 +54,7 @@
         
                     </h5>
                     <p class="card-text">Taka - {{$product->price}}</p>
-                    <a href="#" class="btn btn-outline-warning">Add to cart</a>
+                    @include('frontend.layouts.partial.cart_button')
                   </div>
                 </div>
               </div>

@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     public function home(){
 
         $product = Product::orderBy('id','desc')->get();
+    
+         
+       
+        
 
         return view('frontend.layouts.home',compact('product'));
     }

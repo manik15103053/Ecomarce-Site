@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\NotificationController;
@@ -42,6 +44,20 @@ Route::get('/token/{token}',[NotificationController::class,'notify'])->name('use
 Route::get('/user/dashboard',[UserController::class,'userDashboard'])->name('user.dashboard');
 Route::get('/user/profile',[UserController::class,'userProfile'])->name('user.profile');
 Route::post('/user/update/profile',[UserController::class,'userUpdate'])->name('user.update');
+
+
+///Route for Cart
+Route::get('/cart',[CartController::class,'cartIndex'])->name('cart');
+Route::post('/cart/store',[CartController::class,'cartStore'])->name('cart.store');
+Route::post('//cart/update/{id}',[CartController::class,'cartUpdate'])->name('cart.update');
+Route::post('//cart/delete/{id}',[CartController::class,'cartDelete'])->name('cart.delete');
+
+///Checkouts Routes
+Route::get('/checkout',[CheckoutController::class,'checkoutIndex'])->name('checkout');
+Route::post('/checkout/store',[CheckoutController::class,'checkoutStore'])->name('checkout.store');
+
+
+
 ///Login Route////
 Route::get('/login/process',[RegistrationController::class,'loginCreate'])->name('user.login');
 Route::post('/login',[RegistrationController::class,'login'])->name('login');

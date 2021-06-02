@@ -16,7 +16,9 @@ body{
 /*Override css's*/
 
 
-
+.hidden {
+    display: none;
+}
 
 .bg-light{
     background-color: #0D6EFD!important;

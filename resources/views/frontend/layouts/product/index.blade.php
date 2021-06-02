@@ -40,7 +40,8 @@
         
                     </h5>
                     <p class="card-text">Taka - {{$product->price}}</p>
-                    <a href="#" class="btn btn-outline-warning">Add to cart</a>
+                    @include('frontend.layouts.partial.cart_button')
+
                   </div>
                 </div>
               </div>

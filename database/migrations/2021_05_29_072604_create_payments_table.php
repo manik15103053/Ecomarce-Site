@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistrictsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('division_id')->unsigned();
-
             $table->string('name');
-
+            $table->string('image')->nullable();
+            $table->tinyInteger('priority')->default(1);
+            $table->string('short_name')->unique();
+            $table->string('no')->nullable()->comment('Payment No');
+            $table->string('type')->nullable()->comment('agent|personal');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateDistrictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('payments');
     }
 }

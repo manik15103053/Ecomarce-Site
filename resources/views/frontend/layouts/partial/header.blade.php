@@ -26,6 +26,19 @@
         
       </ul>
       <u class="navbar-nav ml-auto ">
+        <li >
+    
+          <a class="nav-link"href="{{route('cart')}}">
+            <button class="btn btn-danger">
+              <span class="mt-1">Cart</span>
+              <span class="badge badge-warning">
+                
+              {{ App\Models\Cart::totaltems() }}
+              </span>
+
+            </button>
+          </a>
+         </li>
         @guest
         <li >
     
